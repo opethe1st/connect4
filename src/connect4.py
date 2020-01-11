@@ -79,7 +79,7 @@ class Game:
             )
 
 
-PIECE_TO_REPRESENTATION = {Piece.BLUE: "O", Piece.RED: "*", Piece.EMPTY: " "}
+PIECE_TO_REPRESENTATION = {Piece.BLUE: "*", Piece.RED: "O", Piece.EMPTY: " "}
 
 
 def draw_on_screen(
@@ -91,10 +91,9 @@ def draw_on_screen(
     for column in range(game.width):
         for row in range(game.height):
             piece = game.get_piece_at_position(row=row, column=column)
-            if PIECE_TO_REPRESENTATION[piece]:
-                screen.addch(
-                    game.height - row + 1, column * 2, PIECE_TO_REPRESENTATION[piece],
-                )
+            screen.addch(
+                game.height - row + 1, column * 2, PIECE_TO_REPRESENTATION[piece],
+            )
 
     screen.addstr(
         game.height + 2,
