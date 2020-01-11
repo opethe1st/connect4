@@ -85,6 +85,7 @@ PIECE_TO_REPRESENTATION = {Piece.BLUE: "*", Piece.RED: "O", Piece.EMPTY: " "}
 def draw_on_screen(
     game: Game, screen, current_player: Piece, error_msg: str = "", game_over=False
 ):
+    screen.clear()
     screen.addstr(
         0, 0, f"CONNECT4!",
     )
@@ -106,9 +107,7 @@ def draw_on_screen(
         screen.addstr(
             game.height + 3,
             0,
-            f"ERROR: Try again. You need to input an integer between 1 and {game.width}: ".ljust(
-                100
-            ),
+            error_msg,
         )
     if game_over:
         screen.addstr(

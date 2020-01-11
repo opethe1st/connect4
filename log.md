@@ -31,3 +31,13 @@ Also tic-tac-toe?
 Just realise this doesn't handle draws and when there are no valid moves left.
 
 Also possible enhancement. Do this in React or PyQt for just kicks. Should be simple.
+
+
+# Done!
+What else could I do?
+Show which pieces connected?
+Let the user specify a different board size?
+Echo the input to the user.
+Draw the game borders.
+Implement this with PyQyt how much would this have to change?
+Does this need more tests?
