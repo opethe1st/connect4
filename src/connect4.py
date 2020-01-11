@@ -23,6 +23,7 @@ class Game:
         self.winner = None
 
     def is_over(self):
+        # TODO(ope): also should be game over if there are no moves left to play
         return self._game_over
 
     def _connect4(self, column, row):
@@ -39,9 +40,9 @@ class Game:
 
     def is_valid_move(self, column):
         if column not in range(self.width):
-            return f"column needs to be between 0 and {self.width}, column is {column}"
+            return f"column needs to be between 0 and {self.width}, column is {column}: "
         if not len(self._columns[column]) < (self.height - 1):
-            return f"This piece can't be added to this column {column} since it is already full"
+            return f"This piece can't be added to this column {column} since it is already full: "
 
     def play_move(self, piece, column):
         self.put_piece_in_column(piece=piece, column=column)
@@ -76,7 +77,7 @@ class Game:
             )
 
 
-PIECE_TO_REPRESENTATION = {Piece.BLUE: "🔵", Piece.RED: "🔴", Piece.EMPTY: " "}
+PIECE_TO_REPRESENTATION = {Piece.BLUE: "🔵", Piece.RED: "🔴", Piece.EMPTY: None}
 
 
 PIECE_TO_NAME = {
@@ -89,12 +90,13 @@ def draw_on_screen(game: Game, screen):
     for y in range(game.width):
         for x in range(game.height):
             piece = game.get_piece_at_position(row=x, column=y)
-            screen.addch(
-                game.height - x,
-                y * 2,
-                PIECE_TO_REPRESENTATION[piece],
-                curses.color_pair(piece.value),
-            )
+            if PIECE_TO_REPRESENTATION[piece]:
+                screen.addch(
+                    game.height - x,
+                    y * 3,
+                    PIECE_TO_REPRESENTATION[piece],
+                    curses.color_pair(piece.value),
+                )
 
 
 def main(screen):
@@ -127,16 +129,17 @@ def main(screen):
                 screen.addstr(
                     game.height + 1,
                     0,
-                    f"Try again. You need to input an integer between 1 and {game.width}: ",
+                    invalid_message,
                 )
             else:
                 break
 
         game.play_move(piece=current_player, column=column)
         if game.is_over():
+            screen.clear()
             draw_on_screen(game=game, screen=screen)
             screen.addstr(
-                game.height + 1, 0, f"Game Over. {PIECE_TO_NAME[current_player]} won!"
+                game.height + 2, 0, f"Game Over. {PIECE_TO_NAME[current_player]} won!"
             )
             screen.refresh()
             break

@@ -23,3 +23,11 @@ Implement game over code.
  - so part of play move. is determine if game is at game_over state.
 
 
+What's left?
+Tidy up the UI. but I might just leave this so I don't fall into the trap of unending refinement.
+Wish I recorded myself solving this. That would have been nice. Want to do this for a snake game too and record it and post it.
+Also tic-tac-toe?
+
+Just realise this doesn't handle draws and when there are no valid moves left.
+
+Also possible enhancement. Do this in React or PyQt for just kicks. Should be simple.
