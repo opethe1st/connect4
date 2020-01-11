@@ -12,3 +12,14 @@ Then be able to make moves via UI and see the game update. ✅
 Last would be the game over code. Be able to recognise when a player has won.
 
 Then better UI. Draw game boundaries and also better UI for accepting input.
+
+
+# Next step
+implement retry mechanism given user input - done. probably needs to be refactored.
+
+Implement game over code.
+ - either no moves left or 4 balls have been connected.
+ - can do it such that I only check from the last move if 4 balls have been conected.
+ - so part of play move. is determine if game is at game_over state.
+
+
